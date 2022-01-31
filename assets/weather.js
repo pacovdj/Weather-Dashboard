@@ -1,6 +1,6 @@
     const api = {
     key: "4a59ff7f3d77921d89c3eeb91b1c1ac5",
-    base: "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}"
+    base: "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}",
 }
 
 const searchbox = document.querySelector('.search-box');
@@ -22,7 +22,6 @@ function getResults (query) {
 }
 
 function displayResults (weather) {
-    console.log(weather);
     let city = document.querySelector('.location .city');
     city.innerText = `${weather.name}, ${weather.sys.country}`;
 
@@ -30,6 +29,15 @@ function displayResults (weather) {
 let now = new Date();
 let date = document.querySelector('.location .date');
 date.innterText = dateBuilder (now);
+
+let temp = document.querySelector('.current .temp');
+temp.innerHTML = `${Math.round(weather.main.temp)}<span>°F</span>`
+
+let weather_el = document.querySelector('.current .weather');
+weather_el.innerText = weather.weather[0].main;
+
+let hilow = document.querySelector('.hi-low');
+hilow.innerText = `${weather.main.temp_min}°F / ${weather.main.temp_max}°F`;
 
 }
 
